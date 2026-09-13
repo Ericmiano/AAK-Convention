@@ -304,7 +304,7 @@ function Diani() {
                     },
                     {
                       k: "Registration desk",
-                      v: "Open all day on Wednesday, 16 September, with delegate code scanning from 0800 on subsequent mornings.",
+                      v: "Open from 1500 on Wednesday, 16 September, with delegate code scanning from 0800 on subsequent mornings.",
                     },
                   ].map((row) => (
                     <li key={row.k} className="border-b border-border pb-5">

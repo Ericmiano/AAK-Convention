@@ -32,7 +32,7 @@ export const SESSIONS: Session[] = [
     summary:
       "Arrival, registration and community work ahead of the Convention proper.",
     items: [
-      { time: "All day", title: "Arrival and Registration", detail: "AAK Secretariat" },
+      { time: "From 1500", title: "Arrival and Registration", detail: "AAK Secretariat" },
       { time: "All day", title: "Charity Golf Tournament", detail: "AAK Secretariat" },
       {
         time: "1300–1500",
