@@ -27,10 +27,8 @@ export const SESSIONS: Session[] = [
     id: "session-one",
     day: "Day 01",
     date: "Wednesday, 16 September 2026",
-    label: "Session One",
     title: "Arrival, Golf & Community Engagement",
-    summary:
-      "Arrival, registration and community work ahead of the Convention proper.",
+    summary: "Arrival, registration and community work ahead of the Convention proper.",
     items: [
       { time: "From 1500", title: "Arrival and Registration", detail: "AAK Secretariat" },
       { time: "All day", title: "Charity Golf Tournament", detail: "AAK Secretariat" },
@@ -41,12 +39,12 @@ export const SESSIONS: Session[] = [
           "Mabokoni Primary School — school pupils' awards and certificates. AAK Governing Council and delegates, Mary Ngaruiya / Alex Otieno",
       },
     ],
+    label: "",
   },
   {
     id: "session-two",
     day: "Day 02",
     date: "Thursday, 17 September 2026",
-    label: "Sessions Two & Three",
     title: "Official Opening, Climate Action, Sustainability, Policy & Urban Governance",
     summary:
       "The Official Opening Ceremony and keynote open the day, followed by nature-based solutions and circular materials; devolution, urban governance and the Built Environment Baraza after lunch, closing with the Opening Cocktail in the evening.",
@@ -69,11 +67,12 @@ export const SESSIONS: Session[] = [
       {
         time: "0930–0950",
         title: "Keynote Presentation",
-        detail: "H.E. Fatuma Achani, Governor, Kwale County (TBC)",
+        detail: "H.E. Fatuma Achani, Governor, Kwale County",
       },
       {
         time: "0950–1010",
-        title: "Presentation 1: Nature Based Solutions as a Tool for Resilience in the Built Environment",
+        title:
+          "Presentation 1: Nature Based Solutions as a Tool for Resilience in the Built Environment",
         detail: "Dr. Land. Arch. Sunday Abuje",
       },
       {
@@ -97,7 +96,8 @@ export const SESSIONS: Session[] = [
       {
         time: "1120–1220",
         title: "Workshop: Architecture Otherwise",
-        detail: "ADC Fellowship, MASS Design Team. Rapporteurs: Grad. Eng. Matilda Nimatsutsu & Jacinta Serem",
+        detail:
+          "ADC Fellowship, MASS Design Team. Rapporteurs: Grad. Eng. Matilda Nimatsutsu & Jacinta Serem",
       },
       {
         time: "1220–1230",
@@ -112,7 +112,8 @@ export const SESSIONS: Session[] = [
       },
       {
         time: "1250–1310",
-        title: "Presentation 2: Urban Rental Housing — The Missing Lever in City Climate Action, A Policy Brief",
+        title:
+          "Presentation 2: Urban Rental Housing — The Missing Lever in City Climate Action, A Policy Brief",
         detail: "Dr. Linda Gichuyia",
       },
       {
@@ -130,12 +131,12 @@ export const SESSIONS: Session[] = [
       },
       { time: "1900–2200", title: "Opening Cocktail", detail: "Partner: Elegant Fittings" },
     ],
+    label: "",
   },
   {
     id: "session-four",
     day: "Day 03",
     date: "Friday, 18 September 2026",
-    label: "Sessions Four & Five",
     title: "People, Place, Innovation & the Future of Construction",
     summary:
       "Cultural anchors and community resilience, then material logic and construction technology — closing with the Build Tour of Kwale and the Gala Dinner.",
@@ -152,12 +153,15 @@ export const SESSIONS: Session[] = [
       },
       {
         time: "0930–0950",
-        title: "Presentation 3: From Sophistication to Stigma — Reclaiming the Swahili Urban Legacy for a Resilient Kenya",
-        detail: "Mohammed Ali Mwenje, Curator, National Museums of Kenya, Lamu Museums and Lamu World Heritage Site",
+        title:
+          "Presentation 3: From Sophistication to Stigma — Reclaiming the Swahili Urban Legacy for a Resilient Kenya",
+        detail:
+          "Mohammed Ali Mwenje, Curator, National Museums of Kenya, Lamu Museums and Lamu World Heritage Site",
       },
       {
         time: "0950–1010",
-        title: "Presentation 4: Architecture that Anticipates Change — Lessons in Resilience from African Architectural Traditions",
+        title:
+          "Presentation 4: Architecture that Anticipates Change — Lessons in Resilience from African Architectural Traditions",
         detail: "Jason Muthamia Mwenda",
       },
       {
@@ -179,7 +183,8 @@ export const SESSIONS: Session[] = [
       },
       {
         time: "1140–1200",
-        title: "Presentation 6: Embracing Innovative Construction Material for Resilient Road Infrastructure Surfacing",
+        title:
+          "Presentation 6: Embracing Innovative Construction Material for Resilient Road Infrastructure Surfacing",
         detail: "Eng. Howard M'mayi",
       },
       {
@@ -209,9 +214,11 @@ export const SESSIONS: Session[] = [
       {
         time: "1900–Late",
         title: "Closing Gala Dinner",
-        detail: "Charity Golf Tournament award ceremony and Grow A Classroom Student Design Competition awards",
+        detail:
+          "Charity Golf Tournament award ceremony and Grow A Classroom Student Design Competition awards",
       },
     ],
+    label: "",
   },
   {
     id: "post-convention",
