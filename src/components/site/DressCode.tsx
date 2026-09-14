@@ -6,7 +6,7 @@ import dresscodeFloralGents from "@/assets/mixed.jpeg";
 type EventKey = "cocktail" | "gala";
 
 const EVENTS: Record<EventKey, { label: string; when: string }> = {
-  cocktail: { label: "Opening Cocktail", when: "Day 2 · 1900–2200" },
+  cocktail: { label: "Opening Cocktail", when: "Day 2 ·All Day" },
   gala: { label: "Closing Gala Dinner", when: "Day 3 · 1900–Late" },
 };
 
