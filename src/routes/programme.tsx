@@ -50,7 +50,7 @@ function Programme() {
               as="h1"
               delay={90}
               className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] font-semibold text-foreground md:text-6xl"
-              text="Four days on the coast, session by session"
+              text="Four days on the coast."
             />
             <Reveal delay={160}>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">

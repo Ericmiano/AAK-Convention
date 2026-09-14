@@ -67,7 +67,7 @@ export const SESSIONS: Session[] = [
       {
         time: "0930–0950",
         title: "Keynote Presentation",
-        detail: "H.E. Fatuma Achani, Governor, Kwale County",
+        detail: "Charles Hinga, CBS, CA (SA), Permanent Secretary, State Department for Housing and Urban Development",
       },
       {
         time: "0950–1010",
