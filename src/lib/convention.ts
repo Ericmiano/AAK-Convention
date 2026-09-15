@@ -30,7 +30,7 @@ export const SESSIONS: Session[] = [
     title: "Arrival, Golf & Community Engagement",
     summary: "Arrival, registration and community work ahead of the Convention proper.",
     items: [
-      { time: "From 1500", title: "Arrival and Registration", detail: "AAK Secretariat" },
+      { time: "1500–1800", title: "Arrival and Registration", detail: "AAK Secretariat" },
       { time: "All day", title: "Charity Golf Tournament", detail: "AAK Secretariat" },
       {
         time: "1300–1500",
@@ -67,7 +67,7 @@ export const SESSIONS: Session[] = [
       {
         time: "0930–0950",
         title: "Keynote Presentation",
-        detail: "Charles Hinga, CBS, CA (SA), Permanent Secretary, State Department for Housing and Urban Development",
+        detail: "Charles Hinga, CBS, CA (SA), Principal Secretary, State Department for Housing and Urban Development",
       },
       {
         time: "0950–1010",
@@ -87,7 +87,7 @@ export const SESSIONS: Session[] = [
         detail:
           "Panelists: Roy Githaiga, M.Arch. & Dr. Land. Arch. Sunday Abuje. Discussant: Arch. (Dr.) Martin Mbidhi. Rapporteurs: L. Arch. Brenda Waruinu & ID. Jacinta Serem",
       },
-      { time: "1050–1100", title: "Partner Message", detail: "SIKA Kenya Ltd." },
+      { time: "1050–1100", title: "Partner Message", detail: "Plascon East Africa" },
       {
         time: "1100–1120",
         title: "Health Break",
@@ -97,12 +97,12 @@ export const SESSIONS: Session[] = [
         time: "1120–1220",
         title: "Workshop: Architecture Otherwise",
         detail:
-          "ADC Fellowship, MASS Design Team. Rapporteurs: Grad. Eng. Matilda Nimatsutsu & Jacinta Serem",
+          "ADC Fellowship, MASS Design Team — Kimberly Mongare (Kenya), Winston Shimirwa (Rwanda), Samuel K. Gurah (Ghana), Retsepile Rammoko (Lesotho), Ohenetejiri Blessing Akpokiniovo (Nigeria). Rapporteurs: Grad. Eng. Matilda Nimatsutsu & Jacinta Serem",
       },
       {
         time: "1220–1230",
-        title: "Platinum Partner Presentation",
-        detail: "Tile & Carpet Centre Ltd. (TBC)",
+        title: "Partner Presentation",
+        detail: "Tile & Carpet Centre Ltd.",
       },
       {
         time: "1230–1250",
