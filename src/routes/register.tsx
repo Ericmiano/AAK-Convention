@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal, CountUp, WordRise } from "@/components/site/Reveal";
-import { Countdown } from "@/components/site/Countdown";
-import { FlashSaleBanner } from "@/components/site/FlashSaleBanner";
 import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
 import {
   Accordion,
@@ -13,54 +11,53 @@ import {
 } from "@/components/ui/accordion";
 import { CONVENTION } from "@/lib/convention";
 import {
-  OFFICIAL_REGISTRATION_URL,
   TICKETS,
   CPD_POINTS,
   REGISTRATION_FACTS,
   REGISTRATION_INCLUDES,
-  REGISTRATION_STEPS,
+  SECRETARIAT_PHONES,
 } from "@/lib/tickets";
 
 const REGISTRATION_FAQS = [
   {
     q: "What's the difference between Member and Non-Member rates?",
-    a: "The Member rate applies to architects, quantity surveyors, engineers, planners and other built-environment professionals in good standing with AAK. Everyone else registers at the Non-Member rate — membership status is confirmed on the AAK members portal during registration.",
+    a: "The Member rate applied to architects, quantity surveyors, engineers, planners and other built-environment professionals in good standing with AAK. Everyone else registered at the Non-Member rate.",
   },
   {
-    q: "Can I register as a group?",
-    a: "Yes — a group of 5 AAK Members can register together for KES 157,500, working out to KES 31,500 per delegate. Group bookings are completed on the same AAK members portal as individual registrations.",
+    q: "Could I register as a group?",
+    a: "Yes — a group of 5 AAK Members could register together for KES 157,500, working out to KES 31,500 per delegate.",
   },
   {
-    q: "I'm a fresh graduate or student — how do I register?",
-    a: "Register at the Fresh Graduates & Students rate (KES 18,000). You'll need a valid student ID, or proof of graduation within the last two years, when you register on the portal.",
+    q: "I'm a fresh graduate or student — is there still a way to attend?",
+    a: "Online registration at the Fresh Graduates & Students rate has closed. Contact the AAK Secretariat directly (numbers above) to ask about availability.",
   },
   {
     q: "Is accommodation included in the delegate fee?",
     a: `No — delegate fees cover the Convention programme only. Booking a room, at ${CONVENTION.venue} or any nearby hotel, is each delegate's own responsibility.`,
   },
   {
-    q: "Where do I actually pay?",
-    a: "Registration and payment are both completed on the official AAK members portal, not on this site — this page only helps you choose a category and see what's included before you head there.",
+    q: "I already registered and paid — where's my confirmation?",
+    a: "Registered delegates receive confirmation and their delegate pack details from the AAK Secretariat directly. If you haven't heard back, call, text or WhatsApp the numbers above.",
   },
   {
-    q: "Can I sign up for a build tour when I register?",
-    a: "Build tour places are confirmed at check-in on arrival. You can register your interest in advance on the Build Tours page, but final confirmation happens on site.",
+    q: "Can I still sign up for a build tour?",
+    a: "Contact the AAK Secretariat directly to check build tour availability — final confirmation happens on site at check-in.",
   },
 ];
 
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Registration & Fees | AAK Annual Convention 2026" },
+      { title: "Registration Closed | AAK Annual Convention 2026" },
       {
         name: "description",
         content:
-          "Delegate fees and registration steps for the AAK Annual Convention 2026 in Diani. Member, non-member, student and group rates — registration is completed on the official AAK members portal.",
+          "Delegate registration for the AAK Annual Convention 2026 in Diani is now closed. Contact the AAK Secretariat directly for enquiries — call, text or WhatsApp.",
       },
-      { property: "og:title", content: "Registration & Fees — AAK Annual Convention 2026" },
+      { property: "og:title", content: "Registration Closed — AAK Annual Convention 2026" },
       {
         property: "og:description",
-        content: "Choose a delegate category and register on the official AAK members portal.",
+        content: "Registration has closed. Contact the AAK Secretariat directly for enquiries.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -79,7 +76,6 @@ function Register() {
           <GlowOrb className="-left-20 top-16 h-72 w-72 opacity-[0.14]" />
           <PalmCanopy className="parallax-slow -top-8 right-6 h-52 w-52 text-primary/10 md:h-64 md:w-64" />
           <div className="relative mx-auto max-w-7xl">
-            <FlashSaleBanner />
             <Reveal>
               <p className="rule-label">Registration & Fees</p>
             </Reveal>
@@ -87,28 +83,18 @@ function Register() {
               as="h1"
               delay={90}
               className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] font-semibold text-foreground md:text-6xl"
-              text="Choose your delegate category"
+              text="Registration is now closed"
             />
             <Reveal delay={160}>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                {CONVENTION.dates} · {CONVENTION.venue}, {CONVENTION.location}.
+                {CONVENTION.dates} · {CONVENTION.venue}, {CONVENTION.location}. Delegate
+                registration has closed — for enquiries, contact the AAK Secretariat directly.
               </p>
             </Reveal>
             <Reveal delay={200}>
-              <a
-                href={OFFICIAL_REGISTRATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group shimmer-sheen mt-8 inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold tracking-wide text-primary-foreground shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
-              >
-                Register Here
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </a>
+              <span className="mt-8 inline-flex items-center gap-2 rounded-full bg-destructive px-4 py-2 font-display text-sm font-bold tracking-wide text-destructive-foreground shadow-[var(--shadow-raised)]">
+                Registration Closed
+              </span>
             </Reveal>
             <Reveal
               delay={230}
@@ -134,14 +120,37 @@ function Register() {
                 </div>
               </div>
               <div>
-                <p className="rule-label">Registration Is Open</p>
+                <p className="rule-label">Contact The Secretariat</p>
                 <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-                  Rates hold at this tier through the Convention — the sooner you register, the
-                  sooner your seat, tours and gala dinner place are confirmed.
+                  Call, text or WhatsApp for registration enquiries:
                 </p>
-                <div className="mt-5 max-w-md">
-                  <Countdown />
-                </div>
+                <ul className="mt-4 flex max-w-md flex-wrap items-center gap-x-2 gap-y-2">
+                  {SECRETARIAT_PHONES.map((p, i) => (
+                    <li key={p.tel} className="flex items-center gap-2">
+                      <a
+                        href={`tel:${p.tel}`}
+                        className="font-display text-base font-semibold tabular-nums text-foreground transition-colors hover:text-primary"
+                      >
+                        {p.display}
+                      </a>
+                      {p.whatsapp && (
+                        <a
+                          href={`https://wa.me/${p.tel.replace("+", "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-full border border-border px-2.5 py-1 text-[0.62rem] font-semibold tracking-[0.1em] text-muted-foreground uppercase transition-colors hover:text-foreground"
+                        >
+                          WhatsApp
+                        </a>
+                      )}
+                      {i < SECRETARIAT_PHONES.length - 1 && (
+                        <span aria-hidden="true" className="text-muted-foreground">
+                          |
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
             <Reveal delay={300}>
@@ -169,25 +178,28 @@ function Register() {
           <Reveal>
             <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-5 text-center md:flex-row md:justify-between md:px-8 md:text-left">
               <div>
-                <p className="rule-label">Complete Your Registration</p>
+                <p className="rule-label">Registration Closed</p>
                 <p className="mt-1.5 font-display text-lg font-semibold text-ink-foreground md:text-xl">
-                  Registration and payment happen on the AAK members portal
+                  For enquiries, contact the AAK Secretariat — call, text or WhatsApp
                 </p>
               </div>
-              <a
-                href={OFFICIAL_REGISTRATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group shimmer-sheen inline-flex shrink-0 items-center gap-3 rounded-sm bg-primary px-7 py-3.5 font-display text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
-              >
-                Register as delegate
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </a>
+              <ul className="flex shrink-0 flex-wrap items-center justify-center gap-x-2 gap-y-2">
+                {SECRETARIAT_PHONES.map((p, i) => (
+                  <li key={p.tel} className="flex items-center gap-2">
+                    <a
+                      href={`tel:${p.tel}`}
+                      className="rounded-sm bg-primary px-4 py-2 font-display text-sm font-semibold tabular-nums text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
+                    >
+                      {p.display}
+                    </a>
+                    {i < SECRETARIAT_PHONES.length - 1 && (
+                      <span aria-hidden="true" className="text-ink-foreground/50">
+                        |
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </section>
@@ -249,7 +261,7 @@ function Register() {
                             />
                           )}
                         </span>
-                        {closed ? "Sold out" : "Available"}
+                        {closed ? "Closed" : "Available"}
                       </p>
                     </article>
                   </Reveal>
@@ -287,34 +299,6 @@ function Register() {
           </div>
         </section>
 
-        <section className="bg-background py-24 md:py-32">
-          <div className="mx-auto max-w-7xl px-5 md:px-8">
-            <Reveal>
-              <p className="rule-label">How To Register</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight font-semibold text-foreground md:text-5xl">
-                Four steps to your seat at the Convention
-              </h2>
-            </Reveal>
-            <div className="mt-14 grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-              {REGISTRATION_STEPS.map((s, i) => (
-                <Reveal key={s.n} delay={i * 80}>
-                  <article className="h-full bg-card p-8 transition-colors duration-500 hover:bg-surface">
-                    <span className="font-display text-3xl font-semibold text-sand-foreground/25">
-                      {s.n}
-                    </span>
-                    <h3 className="mt-4 font-display text-lg leading-snug font-semibold text-foreground">
-                      {s.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="border-t border-border bg-background py-24 md:py-32">
           <div className="mx-auto max-w-4xl px-5 md:px-8">
             <Reveal>
@@ -322,7 +306,7 @@ function Register() {
             </Reveal>
             <Reveal delay={80}>
               <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight font-semibold text-foreground md:text-5xl">
-                Before you head to the portal
+                What the delegate rates covered
               </h2>
             </Reveal>
             <Reveal delay={140} className="mt-12">

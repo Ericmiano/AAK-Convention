@@ -64,7 +64,7 @@ function Programme() {
                   to="/register"
                   className="shimmer-sheen inline-flex items-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
                 >
-                  Register as a delegate
+                  Registration Closed
                   <span aria-hidden="true">→</span>
                 </Link>
                 <a

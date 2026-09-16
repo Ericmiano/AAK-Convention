@@ -78,14 +78,14 @@ export function SiteFooter() {
                 href="#register-cta"
                 className="lift rounded-lg bg-primary px-5 py-3 font-display text-sm font-semibold text-primary-foreground"
               >
-                Register as a delegate
+                Registration Closed
               </a>
             ) : (
               <Link
                 to="/register"
                 className="lift rounded-lg bg-primary px-5 py-3 font-display text-sm font-semibold text-primary-foreground"
               >
-                Register as a delegate
+                Registration Closed
               </Link>
             )}
           </div>

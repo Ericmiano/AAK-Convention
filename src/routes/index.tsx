@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CONVENTION, SESSIONS, SUBTHEMES } from "@/lib/convention";
-import { TICKETS, CPD_POINTS, OFFICIAL_REGISTRATION_URL } from "@/lib/tickets";
+import { TICKETS, CPD_POINTS } from "@/lib/tickets";
 import heroDiani from "@/assets/hero-diani.webp";
 import themeResilience from "@/assets/theme-resilience.webp";
 import dianiBeach from "@/assets/diani-beach.webp";
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Four days on the Kenyan coast: climate action, urban governance, community resilience and construction innovation. Register as a delegate.",
+          "Four days on the Kenyan coast: climate action, urban governance, community resilience and construction innovation.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -127,7 +127,7 @@ function Hero() {
                 to="/register"
                 className="group shimmer-sheen inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold tracking-wide text-primary-foreground shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
               >
-                Register as a delegate
+                Registration Closed
                 <span
                   aria-hidden="true"
                   className="transition-transform duration-300 group-hover:translate-x-1"
@@ -431,13 +431,13 @@ function DianiSection() {
 const FAQS = [
   {
     q: "How do I register for the Convention?",
-    a: `Choose a delegate category on the Registration & Fees page, then complete registration and payment on the official AAK members portal (${OFFICIAL_REGISTRATION_URL.replace(/^https?:\/\//, "").split("/")[0]}). You'll need to sign in with your AAK membership account.`,
+    a: "Delegate registration is now closed. For enquiries, contact the AAK Secretariat directly — call, text or WhatsApp on the numbers listed on the Registration & Fees page.",
   },
   {
-    q: "What are the ticket tiers and prices?",
-    a: TICKETS.filter((t) => t.status === "open")
-      .map((t) => `${t.name}: KES ${t.price.toLocaleString("en-KE")} (${t.unit})`)
-      .join(" · "),
+    q: "What were the ticket tiers and prices?",
+    a: TICKETS.map((t) => `${t.name}: KES ${t.price.toLocaleString("en-KE")} (${t.unit})`).join(
+      " · ",
+    ),
   },
   {
     q: "How many CPD points will I earn?",
@@ -490,17 +490,16 @@ function RegisterBand() {
       <PalmCanopy className="parallax-slow -bottom-10 -left-10 h-56 w-56 text-ink-foreground/10 md:h-72 md:w-72" />
       <div className="relative mx-auto max-w-4xl px-5 text-center md:px-8">
         <Reveal>
-          <p className="rule-label">Registration Open</p>
+          <p className="rule-label">Registration Closed</p>
         </Reveal>
         <Reveal delay={90}>
           <h2 className="mt-5 font-display text-3xl leading-tight font-semibold text-ink-foreground md:text-5xl">
-            Secure your place at the 2026 Convention
+            Delegate registration has closed
           </h2>
         </Reveal>
         <Reveal delay={160}>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-foreground/70">
-            Delegate registration covers all five sessions, the exhibition, the opening cocktail and
-            the closing gala dinner in Diani.
+            For enquiries, contact the AAK Secretariat directly — call, text or WhatsApp.
           </p>
         </Reveal>
         <Reveal delay={230}>
@@ -508,7 +507,7 @@ function RegisterBand() {
             to="/register"
             className="group shimmer-sheen mt-10 inline-flex items-center gap-3 rounded-sm bg-primary px-9 py-4.5 font-display text-base font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
           >
-            Register as a delegate
+            Contact the Secretariat
             <span
               aria-hidden="true"
               className="transition-transform duration-300 group-hover:translate-x-1"

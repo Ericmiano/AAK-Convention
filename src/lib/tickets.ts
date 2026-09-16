@@ -1,6 +1,17 @@
 export const OFFICIAL_REGISTRATION_URL =
   "https://members.aak.or.ke/eventdetailv2?eid=baM8JnQ3+AaNamasUK2rTg==";
 
+export const REGISTRATION_OPEN = false;
+
+export type SecretariatPhone = { display: string; tel: string; whatsapp?: boolean };
+
+/** AAK Secretariat contact numbers, published for enquiries once registration closes. */
+export const SECRETARIAT_PHONES: SecretariatPhone[] = [
+  { display: "0721 691 337", tel: "+254721691337", whatsapp: true },
+  { display: "020 242 0808", tel: "+254202420808" },
+  { display: "020 242 0586", tel: "+254202420586" },
+];
+
 export type Ticket = {
   id: string;
   name: string;
@@ -19,7 +30,7 @@ export const TICKETS: Ticket[] = [
     price: 35000,
     unit: "per delegate",
     note: "Full access to all five sessions, exhibition, opening cocktail and gala dinner.",
-    status: "open",
+    status: "closed",
     featured: true,
   },
   {
@@ -28,7 +39,7 @@ export const TICKETS: Ticket[] = [
     price: 45000,
     unit: "per delegate",
     note: "Open to built-environment professionals and partners outside AAK membership.",
-    status: "open",
+    status: "closed",
   },
   {
     id: "student",
@@ -36,7 +47,7 @@ export const TICKETS: Ticket[] = [
     price: 18000,
     unit: "per delegate",
     note: "Valid student ID or proof of graduation within the last two years required.",
-    status: "open",
+    status: "closed",
   },
   {
     id: "group",
@@ -44,15 +55,15 @@ export const TICKETS: Ticket[] = [
     price: 157500,
     unit: "for five delegates",
     note: "KES 31,500 per delegate — the best rate for practices attending together.",
-    status: "open",
+    status: "closed",
   },
   {
     id: "onsite",
     name: "Onsite Payment",
     price: 50000,
     unit: "per delegate",
-    note: "Pay at the venue on arrival — register in advance to lock in a lower rate.",
-    status: "open",
+    note: "Was available to pay at the venue on arrival.",
+    status: "closed",
   },
   {
     id: "early-bird",

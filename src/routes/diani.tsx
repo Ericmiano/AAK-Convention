@@ -6,7 +6,12 @@ import { InquiryForm } from "@/components/site/InquiryForm";
 import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
 import { NearbyStaysCarousel } from "@/components/site/NearbyStaysCarousel";
 import { CONVENTION } from "@/lib/convention";
-import { ACCOMMODATION, RESORT_FACILITIES, VENUE_CONTACT } from "@/lib/tickets";
+import {
+  ACCOMMODATION,
+  RESORT_FACILITIES,
+  VENUE_CONTACT,
+  SECRETARIAT_PHONES,
+} from "@/lib/tickets";
 import { PHOTOS } from "@/lib/media";
 import themeResilience from "@/assets/theme-resilience.webp";
 
@@ -70,7 +75,7 @@ function Diani() {
                   to="/register"
                   className="shimmer-sheen mt-9 inline-flex w-fit items-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
                 >
-                  Register as a delegate
+                  Registration Closed
                   <span aria-hidden="true">→</span>
                 </Link>
               </Reveal>
@@ -370,6 +375,28 @@ function Diani() {
                   here. Accommodation bookings are handled directly with the hotel or resort of your
                   choice, not through the Secretariat.
                 </p>
+              </Reveal>
+              <Reveal delay={180}>
+                <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+                  Call, text or WhatsApp:
+                </p>
+                <ul className="mt-2 flex max-w-md flex-wrap items-center gap-x-2 gap-y-2">
+                  {SECRETARIAT_PHONES.map((p, i) => (
+                    <li key={p.tel} className="flex items-center gap-2">
+                      <a
+                        href={`tel:${p.tel}`}
+                        className="font-display text-base font-semibold tabular-nums text-foreground transition-colors hover:text-primary"
+                      >
+                        {p.display}
+                      </a>
+                      {i < SECRETARIAT_PHONES.length - 1 && (
+                        <span aria-hidden="true" className="text-muted-foreground">
+                          |
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </Reveal>
             </div>
             <Reveal delay={120}>
