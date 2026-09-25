@@ -26,6 +26,9 @@ dist-ssr
 # Claude Code local config
 .claude/
 
+# Local scratch data (media scan backups, not project source)
+.media-scan-backup/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

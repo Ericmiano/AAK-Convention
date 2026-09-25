@@ -1,9 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal, WordRise } from "@/components/site/Reveal";
 import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
 import { CONVENTION } from "@/lib/convention";
+import day1Video from "@/assets/highlights-video/day1-highlights.mp4";
+import day2Video from "@/assets/highlights-video/day2-highlights.mp4";
 
 export const Route = createFileRoute("/highlights")({
   head: () => ({
@@ -27,41 +31,114 @@ export const Route = createFileRoute("/highlights")({
   component: Highlights,
 });
 
-const RECAP_DAYS = [
+const photoModules = import.meta.glob<string>("../assets/highlights/*/*.jpg", {
+  eager: true,
+  import: "default",
+});
+
+function photosFor(folder: string) {
+  return Object.entries(photoModules)
+    .filter(([path]) => path.includes(`/highlights/${folder}/`))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, url]) => url);
+}
+
+type Group = { label: string; photos: string[] };
+
+const RECAP_DAYS: {
+  day: string;
+  date: string;
+  title: string;
+  body: string;
+  video?: { src: string; label: string };
+  groups: Group[];
+}[] = [
   {
     day: "Day 01",
     date: "Wednesday, 16 September 2026",
     title: "Arrival, Golf & Community Engagement",
     body: "Delegates arrived in Diani as the Charity Golf Tournament teed off, and the AAK Governing Council joined the Grow A Classroom Mentorship at Mabokoni Primary School for pupils' awards and certificates.",
-    hasVideo: false,
+    video: { src: day1Video, label: "Day 1 highlight reel" },
+    groups: [{ label: "", photos: photosFor("day-1") }],
   },
   {
     day: "Day 02",
     date: "Thursday, 17 September 2026",
     title: "Official Opening, Climate Action & Urban Governance",
     body: "The Official Opening Ceremony and keynote by Charles Hinga, CBS, opened the day, followed by sessions on nature-based solutions, circular materials, devolution and urban governance, the Built Environment Baraza, and the Opening Cocktail on the shoreline.",
-    hasVideo: true,
+    video: { src: day2Video, label: "Day 2 highlight reel" },
+    groups: [
+      { label: "Sessions", photos: photosFor("day-2-sessions") },
+      { label: "Exhibition", photos: photosFor("day-2-exhibition") },
+      { label: "Opening Cocktail", photos: photosFor("day-2-cocktail") },
+      { label: "Governing Council Meeting", photos: photosFor("day-2-meeting") },
+    ],
   },
   {
     day: "Day 03",
     date: "Friday, 18 September 2026",
     title: "People, Place, Innovation & the Future of Construction",
     body: "Sessions on cultural heritage, material innovation and construction technology gave way to the Build Tour of Kwale, team building on the beach, and the Closing Gala Dinner with the Charity Golf and Grow A Classroom awards.",
-    hasVideo: false,
+    groups: [
+      { label: "Sessions", photos: photosFor("day-3-sessions") },
+      { label: "Build Tour of Kwale", photos: photosFor("day-3-build-tour") },
+      { label: "Exhibition", photos: photosFor("day-3-exhibition") },
+      { label: "Closing Gala Dinner", photos: photosFor("day-3-dinner") },
+    ],
   },
   {
     day: "Day 04",
     date: "Saturday, 19 September 2026",
     title: "Post-Convention Build Tour",
     body: "An optional day on the coast — Kisite Mpunguti Marine National Park and Wasini Island — closed out the Convention.",
-    hasVideo: false,
+    groups: [],
   },
 ];
 
-function MediaPlaceholder({ label }: { label: string }) {
+function PhotoGrid({ photos }: { photos: string[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  if (photos.length === 0) return null;
   return (
-    <div className="flex aspect-video w-full items-center justify-center rounded-sm border border-dashed border-border bg-surface">
-      <p className="px-6 text-center text-xs leading-relaxed text-muted-foreground">{label}</p>
+    <>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+        {photos.map((src, i) => (
+          <button
+            key={src}
+            type="button"
+            onClick={() => setOpenIndex(i)}
+            className="group aspect-[4/3] overflow-hidden rounded-sm border border-border bg-surface"
+          >
+            <img
+              src={src}
+              alt=""
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </button>
+        ))}
+      </div>
+      <Dialog open={openIndex !== null} onOpenChange={(open) => !open && setOpenIndex(null)}>
+        <DialogContent className="max-w-4xl border-none bg-transparent p-0 shadow-none">
+          <DialogTitle className="sr-only">Convention photo</DialogTitle>
+          {openIndex !== null && (
+            <img
+              src={photos[openIndex]}
+              alt=""
+              className="max-h-[85vh] w-full rounded-sm object-contain"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
+function VideoBlock({ src, label }: { src: string; label: string }) {
+  return (
+    <div className="overflow-hidden rounded-sm border border-border bg-black">
+      <video controls preload="metadata" className="aspect-video w-full" aria-label={label}>
+        <source src={src} type="video/mp4" />
+      </video>
     </div>
   );
 }
@@ -104,8 +181,8 @@ function Highlights() {
         </section>
 
         <section className="bg-background py-16 md:py-24">
-          <div className="mx-auto max-w-5xl px-5 md:px-8">
-            <div className="space-y-16 md:space-y-24">
+          <div className="mx-auto max-w-6xl px-5 md:px-8">
+            <div className="space-y-20 md:space-y-28">
               {RECAP_DAYS.map((d) => (
                 <Reveal key={d.day}>
                   <article className="scroll-mt-28">
@@ -118,39 +195,38 @@ function Highlights() {
                     <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                       {d.body}
                     </p>
-                    <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                      <MediaPlaceholder
-                        label={
-                          d.hasVideo
-                            ? "Highlight video — coming soon"
-                            : "Photo gallery — coming soon"
-                        }
-                      />
-                      <MediaPlaceholder label="Photo gallery — coming soon" />
-                    </div>
+
+                    {d.video && (
+                      <div className="mt-7 max-w-xl">
+                        <VideoBlock {...d.video} />
+                      </div>
+                    )}
+
+                    {d.groups.length === 0 ? (
+                      <p className="mt-7 text-xs text-muted-foreground">
+                        Photos from this day are being added.
+                      </p>
+                    ) : (
+                      <div className="mt-7 space-y-8">
+                        {d.groups.map(
+                          (g) =>
+                            g.photos.length > 0 && (
+                              <div key={g.label || d.day}>
+                                {g.label && (
+                                  <p className="mb-3 text-[0.62rem] tracking-[0.18em] text-primary uppercase">
+                                    {g.label}
+                                  </p>
+                                )}
+                                <PhotoGrid photos={g.photos} />
+                              </div>
+                            ),
+                        )}
+                      </div>
+                    )}
                   </article>
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="border-t border-border bg-sand py-24 text-sand-foreground md:py-32">
-          <div className="mx-auto max-w-3xl px-5 text-center md:px-8">
-            <Reveal>
-              <p className="rule-label">More To Come</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h2 className="mt-4 font-display text-3xl leading-tight font-semibold md:text-5xl">
-                Photos and video are being added
-              </h2>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-                The AAK Secretariat is curating the full set from all four days — check back
-                soon for the complete gallery and highlight reel.
-              </p>
-            </Reveal>
           </div>
         </section>
       </main>
