@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -8,6 +8,8 @@ import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
 import { CONVENTION } from "@/lib/convention";
 import day1Video from "@/assets/highlights-video/day1-highlights.mp4";
 import day2Video from "@/assets/highlights-video/day2-highlights.mp4";
+import day1Poster from "@/assets/highlights-video/day1-poster.jpg";
+import day2Poster from "@/assets/highlights-video/day2-poster.jpg";
 
 export const Route = createFileRoute("/highlights")({
   head: () => ({
@@ -50,7 +52,7 @@ const RECAP_DAYS: {
   date: string;
   title: string;
   body: string;
-  video?: { src: string; label: string };
+  video?: { src: string; poster: string; label: string };
   groups: Group[];
 }[] = [
   {
@@ -58,7 +60,7 @@ const RECAP_DAYS: {
     date: "Wednesday, 16 September 2026",
     title: "Arrival, Golf & Community Engagement",
     body: "Delegates arrived in Diani as the Charity Golf Tournament teed off, and the AAK Governing Council joined the Grow A Classroom Mentorship at Mabokoni Primary School for pupils' awards and certificates.",
-    video: { src: day1Video, label: "Day 1 highlight reel" },
+    video: { src: day1Video, poster: day1Poster, label: "Day 1 highlight reel" },
     groups: [{ label: "", photos: photosFor("day-1") }],
   },
   {
@@ -66,7 +68,7 @@ const RECAP_DAYS: {
     date: "Thursday, 17 September 2026",
     title: "Official Opening, Climate Action & Urban Governance",
     body: "The Official Opening Ceremony and keynote by Charles Hinga, CBS, opened the day, followed by sessions on nature-based solutions, circular materials, devolution and urban governance, the Built Environment Baraza, and the Opening Cocktail on the shoreline.",
-    video: { src: day2Video, label: "Day 2 highlight reel" },
+    video: { src: day2Video, poster: day2Poster, label: "Day 2 highlight reel" },
     groups: [
       { label: "Sessions", photos: photosFor("day-2-sessions") },
       { label: "Exhibition", photos: photosFor("day-2-exhibition") },
@@ -133,12 +135,76 @@ function PhotoGrid({ photos }: { photos: string[] }) {
   );
 }
 
-function VideoBlock({ src, label }: { src: string; label: string }) {
+function VideoBlock({ src, poster, label }: { src: string; poster: string; label: string }) {
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Videos are loaded on demand via fetch -> Blob rather than a direct
+  // <video src>. Browser extensions that auto-detect and offer to download
+  // playable media (download managers, etc.) key off a real, directly
+  // fetchable URL on the video element — a blob: URL isn't one, and nothing
+  // loads at all until the visitor actually presses play, which also saves
+  // everyone who doesn't click from downloading 30+MB for nothing.
+  useEffect(() => {
+    return () => {
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
+    };
+  }, [blobUrl]);
+
+  async function handlePlay() {
+    if (status === "loading") return;
+    setStatus("loading");
+    try {
+      const res = await fetch(src);
+      if (!res.ok) throw new Error(`${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      setBlobUrl(url);
+      setStatus("idle");
+      requestAnimationFrame(() => videoRef.current?.play());
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
-    <div className="overflow-hidden rounded-sm border border-border bg-black">
-      <video controls preload="metadata" className="aspect-video w-full" aria-label={label}>
-        <source src={src} type="video/mp4" />
-      </video>
+    <div className="relative aspect-video overflow-hidden rounded-sm border border-border bg-black">
+      {blobUrl ? (
+        <video ref={videoRef} src={blobUrl} controls className="h-full w-full" aria-label={label} />
+      ) : (
+        <button
+          type="button"
+          onClick={handlePlay}
+          aria-label={`Play ${label}`}
+          className="group absolute inset-0 h-full w-full"
+        >
+          <img
+            src={poster}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-60"
+          />
+          <span className="absolute inset-0 flex items-center justify-center">
+            {status === "loading" ? (
+              <span className="rounded-full bg-background/90 px-5 py-2.5 font-display text-xs font-semibold tracking-wide text-foreground">
+                Loading video…
+              </span>
+            ) : status === "error" ? (
+              <span className="rounded-full bg-background/90 px-5 py-2.5 font-display text-xs font-semibold tracking-wide text-destructive">
+                Couldn't load — tap to retry
+              </span>
+            ) : (
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-background/90 shadow-[var(--shadow-raised)] transition-transform duration-300 group-hover:scale-110">
+                <span
+                  aria-hidden="true"
+                  className="ml-1 h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-foreground"
+                />
+              </span>
+            )}
+          </span>
+        </button>
+      )}
     </div>
   );
 }
