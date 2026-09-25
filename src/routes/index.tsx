@@ -2,8 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal, WordRise } from "@/components/site/Reveal";
-import { Countdown } from "@/components/site/Countdown";
-import { FlashSaleBanner } from "@/components/site/FlashSaleBanner";
 import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
 import {
   Accordion,
@@ -99,10 +97,9 @@ function Hero() {
         <div className="relative flex flex-col justify-center px-5 py-16 md:px-12 lg:py-24 xl:px-20">
           <GlowOrb className="-left-24 top-10 h-72 w-72 opacity-[0.14]" />
           <PalmCanopy className="parallax-slow -top-6 right-2 h-48 w-48 text-primary/10 md:h-64 md:w-64" />
-          <FlashSaleBanner />
           <Reveal>
             <p className="rule-label">
-              {CONVENTION.organiser} · {CONVENTION.dates}
+              {CONVENTION.organiser} · {CONVENTION.dates} · Convention Concluded
             </p>
           </Reveal>
           <h1 className="mt-6 font-display text-[2.6rem] leading-[1.02] font-semibold tracking-tight text-foreground sm:text-6xl xl:text-7xl">
@@ -116,18 +113,18 @@ function Hero() {
           </h1>
           <Reveal delay={180}>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              The AAK Annual Convention returns to the Kenyan coast for four days of plenaries,
-              workshops, build tours and the Built Environment Baraza — at Diamonds Leisure Beach
-              &amp; Golf Resort, Diani.
+              The Convention is over — four days of plenaries, workshops, build tours and the
+              Built Environment Baraza at Diamonds Leisure Beach &amp; Golf Resort, Diani. Missed
+              it? Here are the highlights.
             </p>
           </Reveal>
           <Reveal delay={260}>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
-                to="/register"
+                to="/highlights"
                 className="group shimmer-sheen inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold tracking-wide text-primary-foreground shadow-[var(--shadow-raised)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
               >
-                Registration Closed
+                See the highlights
                 <span
                   aria-hidden="true"
                   className="transition-transform duration-300 group-hover:translate-x-1"
@@ -139,12 +136,9 @@ function Hero() {
                 to="/programme"
                 className="inline-flex items-center justify-center rounded-sm border border-border bg-card px-7 py-4 font-display text-sm font-medium text-foreground transition-colors hover:bg-surface"
               >
-                Explore the programme
+                View the programme
               </Link>
             </div>
-          </Reveal>
-          <Reveal delay={340} className="mt-12 max-w-md">
-            <Countdown />
           </Reveal>
           <Reveal delay={400}>
             <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-3">

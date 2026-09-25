@@ -9,10 +9,6 @@ import mwacheDamPhoto from "@/assets/Mwache Dam.jpg";
 import ukundaAirportPhoto from "@/assets/Ukunda Airport Terminal Expansion.jpg";
 import kisiteWasiniPhoto from "@/assets/Kisite Mpunguti Marine Park & Wasini Island.jpg";
 
-const TOUR_SIGNUP_URL = "https://forms.cloud.microsoft/r/sBC1RcB0ww";
-const GOLF_SIGNUP_URL =
-  "https://forms.cloud.microsoft/pages/responsepage.aspx?id=uep3lBbp0kSDmQC1vDvBylk3nN6UqTNDszQDQI_t2MpUMExUSk81S0xXQVZOUjJJMkdBQUcxRkZRVi4u&route=shorturl";
-
 export const Route = createFileRoute("/tours")({
   head: () => ({
     meta: [
@@ -128,20 +124,13 @@ function Tours() {
               />
               <Reveal delay={160}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                  Three tours run during the Convention. Confirm your places when you check in at
-                  registration.
+                  Three tours ran during the Convention. Registration is now closed.
                 </p>
               </Reveal>
               <Reveal delay={220}>
-                <a
-                  href={TOUR_SIGNUP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shimmer-sheen mt-9 inline-flex w-fit items-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
-                >
-                  Register for tours
-                  <span aria-hidden="true">→</span>
-                </a>
+                <span className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-destructive px-4 py-2 font-display text-sm font-bold tracking-wide text-destructive-foreground shadow-[var(--shadow-raised)]">
+                  Registration Closed
+                </span>
               </Reveal>
             </div>
             <Reveal
@@ -202,25 +191,10 @@ function Tours() {
                         ))}
                       </dl>
                       <div className="mt-8 border-t border-border pt-6">
-                        <p className="rule-label">Sign Up For This Tour</p>
+                        <p className="rule-label">Registration Closed</p>
                         <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                          Places are confirmed at check-in, but register your interest now to hold
-                          your spot.
+                          Sign-ups for this tour have closed.
                         </p>
-                        <a
-                          href={TOUR_SIGNUP_URL}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group shimmer-sheen mt-5 inline-flex w-fit items-center gap-2 rounded-sm bg-primary px-6 py-3 font-display text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
-                        >
-                          Sign up for this tour
-                          <span
-                            aria-hidden="true"
-                            className="transition-transform duration-300 group-hover:translate-x-1"
-                          >
-                            →
-                          </span>
-                        </a>
                       </div>
                     </div>
                   </article>
@@ -242,25 +216,14 @@ function Tours() {
             </Reveal>
             <Reveal delay={140}>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                Kick off the Convention on the greens — the AAK Charity Golf Tournament runs all
-                day at {CONVENTION.venue}. Sign up in advance to secure a tee time.
+                The AAK Charity Golf Tournament kicked off the Convention on the greens at{" "}
+                {CONVENTION.venue}. Registration is now closed.
               </p>
             </Reveal>
             <Reveal delay={200}>
-              <a
-                href={GOLF_SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group shimmer-sheen mt-8 inline-flex w-fit items-center gap-2 rounded-sm bg-primary px-7 py-4 font-display text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-transform duration-300 hover:-translate-y-1 active:scale-[0.97]"
-              >
-                Sign up for the golf tournament
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </a>
+              <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-destructive px-4 py-2 font-display text-sm font-bold tracking-wide text-destructive-foreground shadow-[var(--shadow-raised)]">
+                Registration Closed
+              </span>
             </Reveal>
           </div>
         </section>

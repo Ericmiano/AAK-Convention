@@ -10,6 +10,7 @@ const SECRETARIAT_EMAIL = "aak@aak.or.ke";
 
 const LINKS: { to: string; label: string }[] = [
   { to: "/", label: "Convention" },
+  { to: "/highlights", label: "Highlights" },
   { to: "/programme", label: "Programme" },
   { to: "/diani", label: "Diani & Stay" },
   { to: "/tours", label: "Build Tours" },

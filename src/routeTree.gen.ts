@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DianiRouteImport } from './routes/diani'
+import { Route as HighlightsRouteImport } from './routes/highlights'
 import { Route as ProgrammeRouteImport } from './routes/programme'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ToursRouteImport } from './routes/tours'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const DianiRoute = DianiRouteImport.update({
   id: '/diani',
   path: '/diani',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HighlightsRoute = HighlightsRouteImport.update({
+  id: '/highlights',
+  path: '/highlights',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgrammeRoute = ProgrammeRouteImport.update({
@@ -44,6 +50,7 @@ const ToursRoute = ToursRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/diani': typeof DianiRoute
+  '/highlights': typeof HighlightsRoute
   '/programme': typeof ProgrammeRoute
   '/register': typeof RegisterRoute
   '/tours': typeof ToursRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/diani': typeof DianiRoute
+  '/highlights': typeof HighlightsRoute
   '/programme': typeof ProgrammeRoute
   '/register': typeof RegisterRoute
   '/tours': typeof ToursRoute
@@ -59,21 +67,31 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/diani': typeof DianiRoute
+  '/highlights': typeof HighlightsRoute
   '/programme': typeof ProgrammeRoute
   '/register': typeof RegisterRoute
   '/tours': typeof ToursRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/diani' | '/programme' | '/register' | '/tours'
+  fullPaths:
+    '/' | '/diani' | '/highlights' | '/programme' | '/register' | '/tours'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/diani' | '/programme' | '/register' | '/tours'
-  id: '__root__' | '/' | '/diani' | '/programme' | '/register' | '/tours'
+  to: '/' | '/diani' | '/highlights' | '/programme' | '/register' | '/tours'
+  id:
+    | '__root__'
+    | '/'
+    | '/diani'
+    | '/highlights'
+    | '/programme'
+    | '/register'
+    | '/tours'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DianiRoute: typeof DianiRoute
+  HighlightsRoute: typeof HighlightsRoute
   ProgrammeRoute: typeof ProgrammeRoute
   RegisterRoute: typeof RegisterRoute
   ToursRoute: typeof ToursRoute
@@ -93,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/diani'
       fullPath: '/diani'
       preLoaderRoute: typeof DianiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/highlights': {
+      id: '/highlights'
+      path: '/highlights'
+      fullPath: '/highlights'
+      preLoaderRoute: typeof HighlightsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programme': {
@@ -122,6 +147,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DianiRoute: DianiRoute,
+  HighlightsRoute: HighlightsRoute,
   ProgrammeRoute: ProgrammeRoute,
   RegisterRoute: RegisterRoute,
   ToursRoute: ToursRoute,

@@ -6,6 +6,7 @@ import aakOrgLogo from "@/assets/aak-org-logo.png";
 
 const NAV = [
   { to: "/", label: "Convention" },
+  { to: "/highlights", label: "Highlights" },
   { to: "/programme", label: "Programme" },
   { to: "/diani", label: "Diani & Stay" },
   { to: "/tours", label: "Build Tours" },
