@@ -141,6 +141,15 @@ function Hero() {
                 View the programme
               </Link>
             </div>
+            <a
+              href="#magazine"
+              className="mt-5 inline-flex items-center gap-2 font-display text-sm font-semibold text-destructive underline-offset-4 hover:underline"
+            >
+              <span className="rounded-full bg-destructive px-2 py-0.5 text-[0.6rem] font-bold tracking-[0.18em] text-destructive-foreground uppercase">
+                New
+              </span>
+              Convention Magazine 2026 — read or download →
+            </a>
           </Reveal>
           <Reveal delay={400}>
             <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-3">
