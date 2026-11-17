@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal, WordRise } from "@/components/site/Reveal";
 import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
+import { MagazineStrip } from "@/components/site/MagazineStrip";
 import { CONVENTION } from "@/lib/convention";
 import day1Video from "@/assets/highlights-video/day1-highlights.mp4";
 import day2Video from "@/assets/highlights-video/day2-highlights.mp4";
@@ -245,6 +246,8 @@ function Highlights() {
             </Reveal>
           </div>
         </section>
+
+        <MagazineStrip />
 
         <section className="bg-background py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-5 md:px-8">

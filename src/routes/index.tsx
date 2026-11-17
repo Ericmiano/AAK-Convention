@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Reveal, WordRise } from "@/components/site/Reveal";
 import { GlowOrb, PalmCanopy } from "@/components/site/Tropics";
+import { MagazineStrip } from "@/components/site/MagazineStrip";
 import {
   Accordion,
   AccordionContent,
@@ -78,6 +79,7 @@ function Home() {
       <main>
         <Hero />
         <Marquee />
+        <MagazineStrip />
         <ThemeSection />
         <Subthemes />
         <ProgrammeSnapshot />
