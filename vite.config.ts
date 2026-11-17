@@ -6,19 +6,17 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig({
-  tanstackStart: {
-    // Every route here has no loaders/server functions, so the whole site
-    // can prerender to plain HTML at build time — TanStack Start's own
-    // prerender option (not nitro's) is what actually renders each route.
-    prerender: {
-      enabled: true,
-      crawlLinks: true,
-    },
-  },
-  nitro: {
-    // static: no server, .output/public only — no Node process, no "Setup
-    // Node.js App" in cPanel, just upload the prerendered files.
-    preset: "static",
-  },
-});
+// A variable (not an inline literal) because the wrapper's types omit
+// `entry`, though it passes it straight through to nitro.
+const nitro = {
+  // static: no server, .output/public only — no Node process, no "Setup
+  // Node.js App" in cPanel, just upload the prerendered files. Nitro's
+  // prerenderer crawls from / and renders every route to HTML.
+  preset: "static",
+  // The static preset ships no server entry, so nitro's (unused) final
+  // server build falls back to index.html and crashes. Point it at nitro's
+  // own generic entry; the resulting .output/server is never deployed.
+  entry: "./node_modules/nitro/dist/presets/standard/runtime/server.mjs",
+};
+
+export default defineConfig({ nitro });

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "build": "node scripts/build-static.mjs",
+    "build": "vite build",
     "build:dev": "vite build --mode development",
     "start": "npx serve .output/public",
     "preview": "vite preview",

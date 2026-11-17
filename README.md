@@ -22,7 +22,7 @@ npm run build
 
 No route on this site has a loader or server function, so the whole site prerenders to plain HTML at build time. Output is `.output/public/` — one `index.html` per route (`/`, `/programme/`, `/register/`, `/diani/`, `/tours/`) plus hashed JS/CSS/image assets. There's no server: **`.output/public/` is the entire deployable site**, servable by any static file host.
 
-`npm run build` runs `scripts/build-static.mjs`, a thin wrapper around `vite build`. Nitro's `static` preset (pinned to `nitro@3.0.260610-beta` — an earlier beta 404s on every route) correctly prerenders all 5 routes but then crashes in an unused trailing step: it doesn't set its own server `entry`, so a server bundle nobody deploys falls back to the client's `index.html` and rolldown rejects it. The wrapper runs the real build, and only treats that specific, verified-harmless failure as success — it checks that all 5 route HTML files actually exist and are non-empty first. Any other failure still fails the build normally. Delete `scripts/build-static.mjs` and switch `nitro.preset` back to `"node-server"` in `vite.config.ts` once a nitro release fixes this (no other config needs to change).
+`npm run build` runs `vite build`. Nitro's `static` preset (pinned to `nitro@3.0.260610-beta` — an earlier beta 404s on every route) prerenders every route by crawling links from `/`. That preset ships no server `entry`, which made nitro's final (never-deployed) server bundle fall back to `index.html` and crash, so `vite.config.ts` points `nitro.entry` at nitro's own generic server entry. The resulting `.output/server/` is unused — only `.output/public/` is deployed.
 
 ## Testing the build locally
 
