@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ScrollProgress } from "@/components/site/Tropics";
+import { MAGAZINE_PDF } from "@/components/site/MagazineStrip";
 import logoMark from "@/assets/logo-mark.webp";
 import aakOrgLogo from "@/assets/aak-org-logo.png";
 
@@ -69,6 +70,41 @@ export function SiteHeader() {
             : "border-b border-transparent bg-background/55"
         }`}
       >
+        <a
+          href={MAGAZINE_PDF}
+          target="_blank"
+          rel="noopener"
+          aria-hidden={scrolled}
+          tabIndex={scrolled ? -1 : undefined}
+          className={`animate-gradient-pan group flex items-center justify-center gap-2.5 overflow-hidden px-4 text-xs text-destructive-foreground transition-all duration-500 md:text-sm ${
+            scrolled ? "max-h-0 py-0" : "max-h-12 py-2"
+          }`}
+          style={{
+            background:
+              "linear-gradient(120deg, var(--destructive) 0%, oklch(0.4 0.19 22.5) 50%, var(--destructive) 100%)",
+            backgroundSize: "220% 220%",
+          }}
+        >
+          <span className="shrink-0 rounded-full bg-destructive-foreground px-2 py-0.5 text-[0.6rem] font-bold tracking-[0.18em] text-destructive uppercase">
+            New
+          </span>
+          <span className="truncate font-display font-semibold">
+            Convention Magazine 2026
+            <span className="hidden font-normal opacity-85 sm:inline">
+              {" "}
+              · AAK Annual Convention 2026 Magazine
+            </span>
+          </span>
+          <span className="shrink-0 font-display font-bold underline underline-offset-4">
+            Read it{" "}
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </span>
+        </a>
         <div
           className={`flex items-center justify-between gap-4 px-5 transition-all duration-500 md:px-12 xl:px-20 ${
             scrolled ? "py-2.5" : "py-4"

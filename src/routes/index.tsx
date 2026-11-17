@@ -94,7 +94,7 @@ function Home() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background pt-24 md:pt-0">
+    <section className="relative overflow-hidden bg-background pt-32 md:pt-12">
       <div className="grid min-h-[92vh] grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative flex flex-col justify-center px-5 py-16 md:px-12 lg:py-24 xl:px-20">
           <GlowOrb className="-left-24 top-10 h-72 w-72 opacity-[0.14]" />
@@ -115,9 +115,9 @@ function Hero() {
           </h1>
           <Reveal delay={180}>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              The Convention is over — four days of plenaries, workshops, build tours and the
-              Built Environment Baraza at Diamonds Leisure Beach &amp; Golf Resort, Diani. Missed
-              it? Here are the highlights.
+              The Convention is over — four days of plenaries, workshops, build tours and the Built
+              Environment Baraza at Diamonds Leisure Beach &amp; Golf Resort, Diani. Missed it? Here
+              are the highlights.
             </p>
           </Reveal>
           <Reveal delay={260}>

@@ -2,7 +2,7 @@ import { Reveal } from "@/components/site/Reveal";
 import cover from "@/assets/magazine-cover.jpg";
 
 // Served as-is from public/, so the URL stays stable for sharing.
-const MAGAZINE_PDF = "/AAK-Annual-Convention-Magazine-2026.pdf";
+export const MAGAZINE_PDF = "/AAK-Annual-Convention-Magazine-2026.pdf";
 
 export function MagazineStrip() {
   return (
